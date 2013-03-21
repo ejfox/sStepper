@@ -1,11 +1,31 @@
 # sStepper
 ## Lightweight story stepper
 
-Often when creating interactive stories, we need to control different "steps" in our interactive. Often this is a text box with different steps that have information about what the user is seeing. 
+Often when creating interactive stories, we need to control different "steps" in our interactive. Often this is a text box with different sections or steps of a story that have information about what the user is seeing. 
 
-To create our stepper, we must first create some basic HTML structure. You want to wrap the whole stepper in an element with the ID **#sStepper**. Inside the sStepper you have the **.stepper-sections**. Optionally, you could also have **#stepper-navigation** if you'd like persistent previous/next buttons.
+To create our stepper, we must first create some basic HTML structure. You want to wrap the whole stepper in an element with the ID **#sStepper**. Inside the sStepper you have the **#stepper-sections**. Optionally, you could also have **#stepper-navigation** if you'd like persistent previous/next buttons.
 
 Any element with the class of **.stepper-next** or **.stepper-prev** will change the stepper in the corresponding direction.
+
+Here's a rough example of the HTML structure
+```
+<div id="sStepper">
+<ul id="stepper-navigation">
+    <li href="#prev" class="stepper-prev">Prev</li>
+    <li href="#next" class="stepper-next">Next</li>
+</ul>
+
+<div id="stepper-sections">
+    <div class="stepper-section"><h2>Step one!</h2></div>
+    <div class="stepper-section"><h2>Step two!</h2></div>
+</div>
+
+</div>
+
+$(document).ready(function(){
+    sStepper.init("#sStepper");
+})
+```
 
 The **#stepper-sections** contains as many elements as you want with the class **.stepper-section**. 
     
@@ -15,7 +35,7 @@ The **#stepper-sections** contains as many elements as you want with the class *
     sectionCount = 0
     sections = []
     
-    sStepper.init = (stepperElement) ->        
+    sStepper.init = (stepperElement, options) ->        
     
         sections = $(stepperElement+" .stepper-section")
     

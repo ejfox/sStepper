@@ -7,7 +7,7 @@ sectionCount = 0;
 
 sections = [];
 
-sStepper.init = function(stepperElement) {
+sStepper.init = function(stepperElement, options) {
   sections = $(stepperElement + " .stepper-section");
   return sections.each(function(i) {
     sectionCount++;
