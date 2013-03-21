@@ -33,7 +33,7 @@ We want to hide all of the sections but the first.
         )
     
 ### Adding listeners for previous/next    
-The user would advance to the next step through either a link in the text, or directional buttons in the stepper. Whatever it is, it needs to have the ID of "stepper-next" or "stepper-prev".
+The user would advance to the next step through either a link in the text, or directional buttons in the stepper. Whatever it is, it needs to have the class of "stepper-next" or "stepper-prev".
 
     $("#sStepper .stepper-next").click( -> 
         sStepper.nextStep();
@@ -41,8 +41,6 @@ The user would advance to the next step through either a link in the text, or di
     $("#sStepper .stepper-prev").click( ->    
         sStepper.prevStep();
     )
-
-In addition, whenever we change a step, there should be callback functions to exit the old step and enter the new one. That way we could do things like start an animation once a step starts, or change the type of visualization shown on the entire page. We define the callback functions for each section as a data attribute in the HTML.
 
 ### Checking which section we're on
     
@@ -77,8 +75,9 @@ If the user reaches the last step which we keep track of in **sectionCount**, we
         
         newStep = $("#stepper-section-"+targetNum)        
         newStep.addClass("active-step").removeClass("hidden-step")
+
         
-Whenever we change steps, we also want to call the proper enter/exit callbacks which are defined in the HTML. 
+In addition, whenever we change a step, there should be callback functions to exit the old step and enter the new one. That way we could do things like start an animation once a step starts, or change the type of visualization shown on the entire page. We define the callback functions for each section as a data attribute in the HTML.
 
         exitCallback = $("#stepper-section-"+currentStep).attr("data-exit-callback")
         enterCallback = $("#stepper-section-"+targetNum).attr("data-enter-callback")
