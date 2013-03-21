@@ -92,7 +92,6 @@ Call the switchTo function for +1 or -1 of the currentStep depending on whether 
     
     sStepper.nextStep = ->    
         currentStep = sStepper.currentStep();
-        #sStepper.switchTo(currentStep + 1)            
         sStepper.switchTo(currentStep + 1)            
 
     sStepper.prevStep = ->
