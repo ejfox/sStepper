@@ -9,6 +9,7 @@ Any element with the class of **.stepper-next** or **.stepper-prev** will change
 
 Here's a rough example of the HTML structure
 ```
+
 <div id="sStepper">
 <ul id="stepper-navigation">
     <li href="#prev" class="stepper-prev">Prev</li>
@@ -22,6 +23,8 @@ Here's a rough example of the HTML structure
 
 </div>
 
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="sStepper.js" type="text/javascript" charset="utf-8"></script>        
 $(document).ready(function(){
     sStepper.init("#sStepper");
 })
