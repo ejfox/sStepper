@@ -42,7 +42,6 @@ sStepper.currentStep = function() {
 sStepper.switchTo = function(targetNum) {
   var currentStep, enterCallback, exitCallback, newStep;
 
-  console.log(sectionCount);
   if (targetNum > sectionCount) {
     targetNum = 1;
   } else if (targetNum <= 0) {
