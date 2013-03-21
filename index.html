@@ -1,0 +1,72 @@
+<html>
+<head>
+    <title>Hello!</title>
+    
+    
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+     ></script>
+     
+     
+     <style type="text/css" media="screen">
+         body { font-size: 200%;
+         
+             width: 600px;
+             margin: 0 auto;
+             padding: 2em;
+         }
+         .hidden-step {
+             display: none;
+         }
+         #stepper-navigation { padding: 0;}
+         #stepper-navigation li { 
+             background-color: white;
+             display: inline-block;
+             list-style-type: none;
+             cursor: pointer;
+             padding: 1em;
+             border-radius: 4px;
+             border: 1px solid #CCC;
+             margin: 0;
+         }
+     </style>
+    
+</head>
+<body>
+    
+    
+    <div id="sStepper">
+        <ul id="stepper-navigation">
+            <li href="#prev" class="stepper-prev">Prev</li>
+            <li href="#next" class="stepper-next">Next</li>
+            <br />
+        </ul>
+        
+        <div id="stepper-sections">
+            <div class="stepper-section">
+                <h2>This is step one!</h2>
+                This step doesn't really do anything.
+            </div>
+            
+            <div class="stepper-section" data-enter-callback="alert('Hi!')" data-exit-callback="alert('Bye')">
+                <h2>This is step two!</h2>
+                This one alerts "hi" when it appears, and "bye" when it exits.
+            </div>
+            
+            <div class="stepper-section" data-enter-callback="$('body').css('background-color', 'green')" data-exit-callback="$('body').css('background-color', 'white')">
+                <h2>This is step three!</h2>
+                This one turns the background green! But not for long.
+            </div>
+        </div>        
+    </div>
+    
+<script src="sStepper.js" type="text/javascript" charset="utf-8"></script>        
+<script type="text/javascript" charset="utf-8">
+$(document).ready(function(){
+
+    sStepper.init("#sStepper");
+
+})
+</script>
+    
+</body>
+</html>
