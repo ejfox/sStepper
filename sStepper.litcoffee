@@ -18,7 +18,7 @@ Any element with the class of **.stepper-next** or **.stepper-prev** will change
 
 <div id="stepper-sections">
     <div class="stepper-section"><h2>Step one!</h2></div>
-    <div class="stepper-section"><h2>Step two!</h2></div>
+    <div class="stepper-section" data-enter-callback="alert('Hi!')"><h2>Step two!</h2></div>
 </div>
 
 </div>
