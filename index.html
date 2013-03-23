@@ -3,8 +3,7 @@
     <title>Hello!</title>
     
     
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
-     ></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
      
      
      <style type="text/css" media="screen">
@@ -62,8 +61,20 @@
 <script src="sStepper.js" type="text/javascript" charset="utf-8"></script>        
 <script type="text/javascript" charset="utf-8">
 $(document).ready(function(){
+    
+    stepperOptions = {}
+    stepperOptions.callbacks = {
+        section2 : {
+            enter: "alert('hello')",
+            exit: "alert('bye')"
+        },
+        section3: {
+            enter: "$('body').css('background-color', 'green')",
+            exit: "$('body').css('background-color', 'white')"            
+        }
+    }
 
-    sStepper.init("#sStepper");
+    sStepper.init("#sStepper", stepperOptions);
 
 })
 </script>
