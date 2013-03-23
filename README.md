@@ -34,7 +34,7 @@ $(document).ready(function(){
 
 The **#stepper-sections** contains as many elements as you want with the class **.stepper-section**. 
     
-### Initializing
+# Initializing
     
     sStepper = {}
     sectionCount = 0
