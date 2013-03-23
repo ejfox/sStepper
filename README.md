@@ -3,11 +3,11 @@
 
 Often when creating interactive stories, we need to control different "steps" in our interactive. Often this is a text box with different sections or steps of a story that have information about what the user is seeing. 
 
-To create our stepper, we must first create some basic HTML structure. You want to wrap the whole stepper in an element with the ID **#sStepper**. Inside the sStepper you have the **#stepper-sections**. Optionally, you could also have **#stepper-navigation** if you'd like persistent previous/next buttons.
+To create our stepper, we must first create it's basic HTML structure. You want to wrap the whole stepper in an element with the ID **#sStepper**. Inside the sStepper you have the **#stepper-sections**. Optionally, you could also have **#stepper-navigation** if you'd like persistent previous/next buttons.
 
 Any element with the class of **.stepper-next** or **.stepper-prev** will change the stepper in the corresponding direction.
 
-Here's a rough example of the HTML structure
+## HTML Example
 ```
 
 <div id="sStepper">
@@ -18,16 +18,18 @@ Here's a rough example of the HTML structure
 
 <div id="stepper-sections">
     <div class="stepper-section"><h2>Step one!</h2></div>
-    <div class="stepper-section"><h2>Step two!</h2></div>
+    <div class="stepper-section" data-enter-callback="alert('Hi!')"><h2>Step two!</h2></div>
 </div>
 
 </div>
 
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script src="sStepper.js" type="text/javascript" charset="utf-8"></script>        
+<script type="text/javascript" charset="utf-8">
 $(document).ready(function(){
     sStepper.init("#sStepper");
 })
+</script>
 ```
 
 The **#stepper-sections** contains as many elements as you want with the class **.stepper-section**. 
@@ -37,8 +39,11 @@ The **#stepper-sections** contains as many elements as you want with the class *
     sStepper = {}
     sectionCount = 0
     sections = []
+    options = {}
     
-    sStepper.init = (stepperElement, options) ->        
+    sStepper.init = (stepperElement, sStepperOptions) ->   
+    
+        options = sStepperOptions
     
         sections = $(stepperElement+" .stepper-section")
     
@@ -100,10 +105,17 @@ If the user reaches the last step which we keep track of in **sectionCount**, we
         newStep.addClass("active-step").removeClass("hidden-step")
 
         
-In addition, whenever we change a step, there should be callback functions to exit the old step and enter the new one. That way we could do things like start an animation once a step starts, or change the type of visualization shown on the entire page. We define the callback functions for each section as a data attribute in the HTML.
-
-        exitCallback = $("#stepper-section-"+currentStep).attr("data-exit-callback")
-        enterCallback = $("#stepper-section-"+targetNum).attr("data-enter-callback")
+In addition, whenever we change a step, there should be callback functions to exit the old step and enter the new one. That way we could do things like start an animation once a step starts, or change the type of visualization shown on the entire page. We define the callback functions for each section as a data attribute in the options or HTML. If options are supplied, we ignore the HTML callbacks.        
+    
+        if options isnt undefined
+            if options.callbacks isnt undefined
+                if options.callbacks['section'+currentStep] isnt undefined
+                    exitCallback = options.callbacks['section'+currentStep].exit
+                if options.callbacks['section'+targetNum] isnt undefined
+                    enterCallback = options.callbacks['section'+targetNum].enter
+        else
+            exitCallback = $("#stepper-section-"+currentStep).attr("data-exit-callback")
+            enterCallback = $("#stepper-section-"+targetNum).attr("data-enter-callback")
         
         if enterCallback isnt undefined
             eval(enterCallback)
@@ -124,12 +136,13 @@ Call the switchTo function for +1 or -1 of the currentStep depending on whether 
         
 ### Navigation        
 For navigation we add a link for each section.
-    
-    for i in [1..$(".stepper-section").length]
-        navLink = $("<a href='#' onclick='sStepper.switchTo("+i+")'>Section "+i+" </a> ")
-        #navLink.on("click", sStepper.switchTo(i));
+
+    if $("#stepper-navigation").length > 0   
+        for i in [1..$(".stepper-section").length]
+            navLink = $("<a href='#' onclick='sStepper.switchTo("+i+")'>Section "+i+" </a> ")
+            #navLink.on("click", sStepper.switchTo(i));
         
-        $("#stepper-navigation").append(navLink)
+            $("#stepper-navigation").append(navLink)
 
             
         
