@@ -13,6 +13,20 @@ Any element with the class of **.stepper-next** or **.stepper-prev** will change
 
 All you need to create a stepper is the correctly formatted HTML, and jQuery and sStepper included. 
 ```
+<style type="text/css" media="screen">
+    .hidden-step { display: none;}
+    #stepper-navigation { padding: 0;}
+    #stepper-navigation li { 
+        background-color: white;
+        display: inline-block;
+        list-style-type: none;
+        cursor: pointer;
+        padding: 1em;
+        border-radius: 4px;
+        border: 1px solid #CCC;
+        margin: 0;
+    }
+</style>
 
 <div id="sStepper">
 <ul id="stepper-navigation">
