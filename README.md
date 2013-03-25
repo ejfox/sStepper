@@ -140,6 +140,8 @@ In addition, whenever we change a step, there should be callback functions to ex
 
         if exitCallback isnt undefined
             eval(exitCallback)
+            
+        return true
 
 Call the switchTo function for +1 or -1 of the currentStep depending on whether it's the next or previous step.                                
     
